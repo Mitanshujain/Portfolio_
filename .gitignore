@@ -1,0 +1,33 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials*
+secrets*
+.npmrc
+.netrc
+.openai/
+.mcp.json
+
+# Personal documents: add your original resume locally, never commit it
+*.pdf
+*.doc
+*.docx
+*.zip
+*.tar
+*.tar.gz
+
+# Local tools, editor files and generated output
+node_modules/
+coverage/
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
