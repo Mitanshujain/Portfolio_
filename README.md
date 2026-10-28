@@ -7,7 +7,7 @@ A responsive portfolio focused on software development, enterprise data workflow
 - Responsive introduction, portrait, project case studies, experience, skills and education sections.
 - Keyboard-friendly mobile navigation and native expandable project summaries.
 - Gmail compose links with a prefilled recipient.
-- Resume download handling with a PDF viewer fallback.
+- Resume requests through Gmail, keeping the original PDF out of the public repository.
 - Reduced-motion support, descriptive image text and visible keyboard focus.
 - Local assets and no external JavaScript dependencies.
 
@@ -25,11 +25,21 @@ Open `http://localhost:8000`.
 node --test tests/resume-download.test.cjs
 ```
 
-## Add your resume privately
+## Resume privacy
 
-The original resume is intentionally excluded from this repository because it contains personal contact details. This does not change the resume on the existing hosted portfolio.
+The original resume is intentionally excluded because it contains personal contact details. The public website uses **Request resume** links that open Gmail with a prefilled subject. The original resume and private hosted version are unchanged.
 
-To enable resume buttons in your local copy or a separate deployment, put your PDF at `dist/assets/Mitanshu-Jain-Resume.pdf`. PDF files are ignored by Git. Upload that file directly to your chosen hosting service if you want visitors to access it, and review its contents before sharing it. Without this local file, the resume buttons cannot retrieve a PDF; the website sections and other links still work.
+The optional PDF download handler in `dist/app.js` remains available for a private/custom deployment. It is only attached to links marked `data-resume-download`; no such links are enabled in this public page. Never commit a personal PDF without reviewing its contents.
+
+## GitHub Pages
+
+This repository publishes the `docs` folder from the `main` branch. Edit source files in `dist`, then regenerate the public copy before committing:
+
+```sh
+python3 scripts/prepare-pages.py
+```
+
+The generator copies only the website files, excludes private PDFs and creates `.nojekyll` for static hosting.
 
 ## Project structure
 
@@ -46,7 +56,7 @@ tests/
   resume-download.test.cjs     Download and fallback checks
 ```
 
-Edit the page content in `dist/index.html`, the palette and layout in `dist/styles.css`, and interactions in `dist/app.js`. A static host should serve the `dist` directory. Never publish credentials or development configuration.
+Edit the page content in `dist/index.html`, the palette and layout in `dist/styles.css`, and interactions in `dist/app.js`. A static host can serve the `dist` directory; GitHub Pages serves the generated `docs` directory. Never publish credentials or development configuration.
 
 ## Privacy
 
